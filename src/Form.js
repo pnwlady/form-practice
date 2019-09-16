@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -10,6 +9,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import Industry from './components/Industry';
+import Business from './components/Business';
+import Address from './components/Address';
+import Occupancy from './components/Occupancy';
+import Phone from './components/Phone';
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -42,28 +46,24 @@ export default function FormDialog() {
         </Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullScreen={fullScreen} >
             <AppBar className={classes.appBar}> 
-            <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+            <DialogTitle id="form-dialog-title">Get a Quote for your Salon</DialogTitle>
             </AppBar>
-            <DialogContent>
+            <DialogContent id="content">
                 <DialogContentText>
-                To subscribe to this website, please enter your email address here. We will send updates
-                occasionally.
+                Let's get you a quote -- just a couple questions for you.
                 </DialogContentText>
-                <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Email Address"
-                type="email"
-                fullWidth
-                />
+            <Industry />
+            <Business />
             </DialogContent>
+            <Address />
+            <Occupancy />
+            <Phone />
             <DialogActions>
                 <Button onClick={handleClose} color="primary">
                 Cancel
                 </Button>
                 <Button onClick={handleClose} color="primary">
-                Subscribe
+                Get Quote
                 </Button>
             </DialogActions>
         </Dialog>
