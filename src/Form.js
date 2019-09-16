@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Industry from './components/Industry';
 import Business from './components/Business';
 import Address from './components/Address';
@@ -16,13 +16,22 @@ import Occupancy from './components/Occupancy';
 import Phone from './components/Phone';
 
 const useStyles = makeStyles(theme => ({
-    appBar: {
-      position: 'relative',
-    },
-    title: {
-      marginLeft: theme.spacing(2),
-      flex: 1,
-    },
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: theme.spacing(4),
+  },
+  appBar: {
+    position: 'relative',
+  },
+  content: {
+    marginLeft: theme.spacing(2),
+  },
+  title: {
+    marginLeft: theme.spacing(2),
+    flex: 1,
+  },
   }));
 
 export default function FormDialog() {
@@ -38,9 +47,13 @@ export default function FormDialog() {
     function handleClose() {
       setOpen(false);
     }
-  
+
+    function handleSubmit() {
+      setOpen(false);
+    }
+
     return (
-      <div>
+      <form>
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
           Open form dialog
         </Button>
@@ -48,26 +61,26 @@ export default function FormDialog() {
             <AppBar className={classes.appBar}> 
             <DialogTitle id="form-dialog-title">Get a Quote for your Salon</DialogTitle>
             </AppBar>
-            <DialogContent id="content">
-                <DialogContentText>
-                Let's get you a quote -- just a couple questions for you.
-                </DialogContentText>
-            <Industry />
-            <Business />
+            <DialogContent style={{ padding: '20px 30px' }}>
+              <DialogContentText>
+              Let's get you a quote -- just a couple questions for you.
+              </DialogContentText>
+              <Industry />
+              <Business />
+              <Address />
+              <Occupancy />
+              <Phone />
             </DialogContent>
-            <Address />
-            <Occupancy />
-            <Phone />
             <DialogActions>
                 <Button onClick={handleClose} color="primary">
                 Cancel
                 </Button>
-                <Button onClick={handleClose} color="primary">
+                <Button onClick={handleSubmit} color="primary">
                 Get Quote
                 </Button>
             </DialogActions>
         </Dialog>
-      </div>
+      </form>
     );
   }
 

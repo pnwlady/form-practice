@@ -3,18 +3,18 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  container: {
+  root: {
     display: 'flex',
-    flexWrap: 'wrap'
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   textField: {
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    marginLeft: 50,
     width: 400,
   },
-  dense: {
-    marginTop: 20,
-  }
+  // dense: {
+  //   marginTop: 20,
+  // }
 }));
 
 export default function Address() {
