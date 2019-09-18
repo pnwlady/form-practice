@@ -16,6 +16,10 @@ function App() {
   const { register, handleSubmit, errors } = useForm(); // initialise the hook
   const onSubmit = data => {
     console.log(data);
+    // 1. Parse address
+    // 2. Build BOP
+    // 3. Make api calls
+    // 4. Display results or alternative option
   };
  
   return (
