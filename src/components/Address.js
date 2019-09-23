@@ -9,7 +9,7 @@ const Address = props => (
 		type={props.inputType}
 		value={props.value}
 		label={props.label}
-		placeholder={'Street Address, City, Zip Code'}
+		placeholder={props.placeholder}
 		onChange={props.controlFunction}
 		margin="normal"
 	/>

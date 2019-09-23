@@ -10,14 +10,14 @@ const Occupancy = (props) => (
 		name={props.name}
 		value={props.selectedOption}
 		onChange={props.controlFunc}
-		placeholder={props.placeholder}
+		helperText={props.placeholder}
 		margin="normal"
-	>
-		{props.option.map(option => (
-			<MenuItem value={option.value}>
-				{option.label}
-			</MenuItem>
-		))}
+	>	
+		<MenuItem value="HMBUS">Salon at your Home</MenuItem>
+		<MenuItem value="LSCND" selected={true} >Rent Chair, Office, or Space</MenuItem>
+		<MenuItem value="OWNCND">Own Office or Space</MenuItem>
+		<MenuItem value="LSBLD">Rent Building</MenuItem>
+		<MenuItem value="OWBLD">Own Building</MenuItem>
 	</TextField>
 );
 

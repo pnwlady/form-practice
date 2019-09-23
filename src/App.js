@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import FormDialog from './Container/Form';
+import FormContainer from './Container/Form';
 
 function App() {
 
   return (
     <div className="App">
         app loading
-        <FormDialog />
+        <FormContainer />
     </div>
   );
 }

@@ -11,45 +11,13 @@ import Industry from '../components/Industry';
 import Business from '../components/Business';
 import Address from '../components/Address';
 import Occupancy from '../components/Occupancy';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+//hooks can only be used in body of react functional component
+// const theme = useTheme();
+// const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-//   const industryOptions = [
-//     {
-//         value: 'Beauty and Hair Styling Salon',
-//         name: 'Hair Salon',
-//       },
-//       {
-//         value: 'Nail Salons',
-//         name: 'Nail Salon',
-//       }
-//   ];
-//   const occupancySelection = [
-//     {
-//         value: 'HMBUS',
-//         name: 'Salon at your Home',
-//       },
-//       {
-//         value: 'LSCND',
-//         name: 'Rent Chair, Office, or Space',
-//       },
-//       {
-//         value: 'OWNCND',
-//         name: 'Own Office or Space',
-//       },
-//       {
-//         value: 'LSBLD',
-//         name: 'Rent Building',
-//       },
-//       {
-//         value: 'OWBLD',
-//         name: 'Own Building',
-//       },
-//       {
-//         value: 'KSBUS',
-//         name: 'Kiosk',
-//       },
-//   ];
-
-class FormDialog extends React.Component {
+class FormContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -65,18 +33,7 @@ class FormDialog extends React.Component {
 		this.handleAddressChange = this.handleAddressChange.bind(this);
 		this.handleOccupancySelect = this.handleOccupancySelect.bind(this);
 	}
-	componentDidMount() {
-		fetch('./options.json')
-		.then(res => res.json())
-		.then(data => {
-			console.log("is this happening?", data);
-			this.setState({
-				industrySelection: data.industryOptions,
-				occupancySelection: data.occupancySelection,
-			  })
-		});
-  }
-  
+
 	handleIndustrySelect(e) {
 		this.setState({ industrySelection: e.target.value }, () => console.log('industry', this.state.industrySelection));
 	}
@@ -115,15 +72,16 @@ class FormDialog extends React.Component {
 		console.log('Send this in a POST request:', formPayload);
 		this.handleClearForm(e);
 	}
-	
+
 	render() {
 		return (
-			<form className="container" onSubmit={this.handleFormSubmit}>
-				<Dialog >
-					<AppBar>
+			<form onSubmit={this.handleFormSubmit}>
+				{/* <Dialog open="true" aria-labelledby="form-dialog-title" fullScreen={fullScreen} ></Dialog> */}
+				<Dialog open="true" aria-labelledby="form-dialog-title" >
+					<DialogContent style={{ padding: '20px 30px' }} >
+					<AppBar className="appBar">
 						<DialogTitle>Get a Quote for your Salon</DialogTitle>
 					</AppBar>
-					<DialogContent style={{ padding: '20px 30px' }} >
 						<DialogContentText>Let's get you a quote -- just a couple questions for you.</DialogContentText>
 						<Industry
 							name={'industry'}
@@ -152,13 +110,13 @@ class FormDialog extends React.Component {
 							options={this.state.occupancyOptions}
 							selectedOption={this.state.occupancySelection} />
 						<DialogActions>
+						<Button
+							className="btn btn-link float-left"
+							onClick={this.handleClearForm}>Clear form</Button>
 						<Button 
 							type="submit"
 							className="btn btn-primary float-right"
 							value="Submit">Submit</Button>
-						<Button
-							className="btn btn-link float-left"
-							onClick={this.handleClearForm}>Clear form</Button>
 						</DialogActions>
 					</DialogContent>
 				</Dialog>
@@ -167,4 +125,4 @@ class FormDialog extends React.Component {
 	}
 }
 
-export default FormDialog;
+export default FormContainer;

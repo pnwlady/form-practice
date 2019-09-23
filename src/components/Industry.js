@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
-
 const Industry = (props) => (
 	<TextField
 		className="form-select"
@@ -11,14 +10,11 @@ const Industry = (props) => (
 		name={props.name}
 		value={props.selectedOption}
 		onChange={props.controlFunc}
-		placeholder={props.placeholder}
+		helperText={props.placeholder}
 		margin="normal"
 		>
-		{props.option.map(option => (
-			<MenuItem key={option.value}>
-				{option.label}
-			</MenuItem>
-		))}
+		<MenuItem value="Beauty and Hair Styling Salon" selected={true} >Hair Salon</MenuItem>
+		<MenuItem value="Nail Salons">Nail Salon</MenuItem>
 	</TextField>
 );
 

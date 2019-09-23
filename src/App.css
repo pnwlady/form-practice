@@ -1,6 +1,23 @@
 .App {
-  text-align: center;
+  display: 'flex';
+  align-items: 'center';
+  justify-content: 'center';
 }
 .content {
   text-align: center;
+}
+.appBar {
+  position: 'relative';
+}
+.textField {
+  margin: 0 3rem;
+  width: 80%;
+}
+.form-input {
+  margin: 0 3rem;
+  width: 80%;
+}
+.form-select {
+  width: 400px;
+  /* margin: 30px; */
 }
