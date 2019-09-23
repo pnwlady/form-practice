@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,7 +15,7 @@ import Business from './Business';
 import Address from './Address';
 import Occupancy from './Occupancy';
 // import Phone from './Phone';
-import useForm from 'react-hook-form';
+// import useForm from 'react-hook-form';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,10 +42,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function FormDialog() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
+    // const [open, setOpen] = React.useState(false);
   // const [open, setOpen] = useState(false);
   // function handleClickOpen() {
   //   setOpen(true);

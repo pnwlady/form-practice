@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import FormDialog from './components/Form';
+import FormDialog from './Container/Form';
 
 function App() {
 

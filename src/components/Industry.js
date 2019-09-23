@@ -2,43 +2,44 @@ import React from "react";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
-const industries = [
-    {
-        value: 'Beauty and Hair Styling Salon',
-        label: 'Hair Salon',
-      },
-      {
-        value: 'Nail Salons',
-        label: 'Nail Salon',
-      }
-];
+// const industries = [
+//     {
+//         value: 'Beauty and Hair Styling Salon',
+//         label: 'Hair Salon',
+//       },
+//       {
+//         value: 'Nail Salons',
+//         label: 'Nail Salon',
+//       }
+// ];
 
-export default function Industry({handleChange, name}) {
-
-  return (
-    <TextField
-		id="select-industry"
+const Industry = (props) => (
+	<TextField
+		className="form-select"
 		select
-		name={name}
-		label="Industry"
-		className={classes.textField}
-		value={values.industry}
-		ref={register({ required: true })} 
-		placeholder="What's Industry are you in?"
-		onChange={handleChange('industry')}
-		// SelectProps={{
-		// 	MenuProps: {
-		// 	className: classes.menu,
-		// 	},
-		// }}
-		helperText="Please select your industry"
+		name={props.name}
+		value={props.selectedOption}
+		onChange={props.controlFunc}
+		label={props.label}
+		placeholder={props.placeholder}
 		margin="normal"
 		>
-		{industries.map(option => (
-			<MenuItem key={option.value} value={option.value}>
-			{option.label}
+		{props.option.map(option => (
+			<MenuItem value={option.value}>
+				{option.label}
 			</MenuItem>
 		))}
-		</TextField>
-  )}
-  
+	</TextField>
+);
+
+
+
+Industry.propTypes = {
+	name: React.PropTypes.string.isRequired,
+	options: React.PropTypes.array.isRequired,
+	selectedOption: React.PropTypes.string,
+	controlFunc: React.PropTypes.func.isRequired,
+	placeholder: React.PropTypes.string
+};
+
+export default Industry;

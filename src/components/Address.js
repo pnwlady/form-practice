@@ -1,16 +1,29 @@
 import React from "react";
 import TextField from '@material-ui/core/TextField';
 
-export default function Address({handleChange, name }) {
+const Address = props => (
+	<TextField
+		className="form-input"
+		name={props.name}
+		type={props.inputType}
+		value={props.value}
+		label={props.label}
+		placeholder={'Street Address, City, Zip Code'}
+		onChange={props.controlFunction}
+		margin="normal"
+	/>
+);
 
-  return (
-    <TextField
-    id="standard-address"
-    name={name}
-    label="Full Address"
-    placeholder={'Street Address, City, Zip Code'}
-    onChange={handleChange('address')}
-    margin="normal"
-  />
-  )}
+Address.propTypes = {
+	inputType: React.PropTypes.oneOf(['text', 'number']).isRequired,
+	name: React.PropTypes.string.isRequired,
+	controlFunc: React.PropTypes.func.isRequired,
+	content: React.PropTypes.oneOfType([
+		React.PropTypes.string,
+		React.PropTypes.number,
+	]).isRequired,
+	placeholder: React.PropTypes.string,
+};
 
+
+export default Address;
