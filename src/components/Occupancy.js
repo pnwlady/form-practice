@@ -37,7 +37,7 @@ const Occupancy = (props) => (
 		value={props.selectedOption}
 		onChange={props.controlFunc}
 		label={props.label}
-		helperText="Please select location type"
+		placeholder={props.placeholder}
 		margin="normal"
 	>
 		{props.option.map(option => (

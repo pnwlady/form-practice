@@ -7,44 +7,44 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core/styles';
-import Industry from './Industry';
-import Business from './Business';
-import Address from './Address';
-import Occupancy from './Occupancy';
+// import useMediaQuery from '@material-ui/core/useMediaQuery';
+// import { useTheme } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
+import Industry from '../components/Industry';
+import Business from '../components/Business';
+import Address from '../components/Address';
+import Occupancy from '../components/Occupancy';
 // import Phone from './Phone';
 // import useForm from 'react-hook-form';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: theme.spacing(4),
-  },
-  appBar: {
-    position: 'relative',
-  },
-  textField: {
-	marginLeft: theme.spacing(2),
-	width: 400
-  },
-  content: {
-    marginLeft: theme.spacing(2),
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
-  },
-  }));
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     paddingTop: theme.spacing(4),
+//   },
+//   appBar: {
+//     position: 'relative',
+//   },
+//   textField: {
+// 	marginLeft: theme.spacing(2),
+// 	width: 400
+//   },
+//   content: {
+//     marginLeft: theme.spacing(2),
+//   },
+//   title: {
+//     marginLeft: theme.spacing(2),
+//     flex: 1,
+//   },
+//   }));
 
 export default function FormDialog() {
-    const classes = useStyles();
+    // const classes = useStyles();
 
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    // const theme = useTheme();
+    // const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
     // const [open, setOpen] = React.useState(false);
   // const [open, setOpen] = useState(false);
   // function handleClickOpen() {
