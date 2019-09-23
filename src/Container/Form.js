@@ -7,155 +7,161 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import useMediaQuery from '@material-ui/core/useMediaQuery';
-// import { useTheme } from '@material-ui/core/styles';
-// import { makeStyles } from '@material-ui/core/styles';
 import Industry from '../components/Industry';
 import Business from '../components/Business';
 import Address from '../components/Address';
 import Occupancy from '../components/Occupancy';
-// import Phone from './Phone';
-// import useForm from 'react-hook-form';
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     paddingTop: theme.spacing(4),
-//   },
-//   appBar: {
-//     position: 'relative',
-//   },
-//   textField: {
-// 	marginLeft: theme.spacing(2),
-// 	width: 400
-//   },
-//   content: {
-//     marginLeft: theme.spacing(2),
-//   },
-//   title: {
-//     marginLeft: theme.spacing(2),
-//     flex: 1,
-//   },
-//   }));
+  const industryOptions = [
+    {
+        value: 'Beauty and Hair Styling Salon',
+        label: 'Hair Salon',
+      },
+      {
+        value: 'Nail Salons',
+        label: 'Nail Salon',
+      }
+  ];
+  const occupancySelection = [
+    {
+        value: 'HMBUS',
+        label: 'Salon at your Home',
+      },
+      {
+        value: 'LSCND',
+        label: 'Rent Chair, Office, or Space',
+      },
+      {
+        value: 'OWNCND',
+        label: 'Own Office or Space',
+      },
+      {
+        value: 'LSBLD',
+        label: 'Rent Building',
+      },
+      {
+        value: 'OWBLD',
+        label: 'Own Building',
+      },
+      {
+        value: 'KSBUS',
+        label: 'Kiosk',
+      },
+  ];
 
-export default function FormDialog() {
-    // const classes = useStyles();
-
-    // const theme = useTheme();
-    // const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-    // const [open, setOpen] = React.useState(false);
-  // const [open, setOpen] = useState(false);
-  // function handleClickOpen() {
-  //   setOpen(true);
-  // }
-
-  // function handleClose() {
-  //   setOpen(false);
-  // }
-
-  // const [values, setValues] = useState({
-  //   address: '',
-  //   industry: '',
-    
-  // });
-
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
-//   const industries = [
-//     {
-//         value: 'Beauty and Hair Styling Salon',
-//         label: 'Hair Salon',
-//       },
-//       {
-//         value: 'Nail Salons',
-//         label: 'Nail Salon',
-//       }
-//   ];
-//   const occupancy = [
-//     {
-//         value: 'HMBUS',
-//         label: 'Salon at your Home',
-//       },
-//       {
-//         value: 'LSCND',
-//         label: 'Rent Chair, Office, or Space',
-//       },
-//       {
-//         value: 'OWNCND',
-//         label: 'Own Office or Space',
-//       },
-//       {
-//         value: 'LSBLD',
-//         label: 'Rent Building',
-//       },
-//       {
-//         value: 'OWBLD',
-//         label: 'Own Building',
-//       },
-//       {
-//         value: 'KSBUS',
-//         label: 'Kiosk',
-//       },
-//   ];
-  const { register, handleSubmit, errors } = useForm(); // initialise the hook
-    const onSubmit = data => {
-     
-      console.log(data);
-      // 1. Parse address
-      // 2. Build BOP
-      // 3. Make api calls
-      // 4. Display results or alternative option
-      setOpen(false);
-    };
-  
-    return (
-       <form onSubmit={handleSubmit(onSubmit)}>
-			<Button variant="outlined" color="primary" onClick={handleClickOpen}> Open form dialog </Button>
-			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullScreen={fullScreen} >
-				<AppBar className={classes.appBar}> 
-					<DialogTitle id="form-dialog-title">Get a Quote for your Salon</DialogTitle>
-				</AppBar>
-				<DialogContent style={{ padding: '20px 30px' }}>
-					<DialogContentText> Let's get you a quote -- just a couple questions for you. </DialogContentText>
-				
-						<Industry 
-							className={classes.textField}
-							// value={values.industry}
-							ref={register({ required: true })} 
-							onChange={handleChange('industry')} /> 
-							{errors.industry && 'field required'}
-
-						<Business 
-							 className={classes.textField}
-							//  value={values.name}
-							 ref={register({ required: true })} 
-							 onChange={handleChange('businessname')} />
-							 {errors.business && 'Business name is required.'}
-				
-						<Address    
-							className={classes.textField}
-							// value={values.address}
-							ref={register({ required: true })} 
-							onChange={handleChange('address')} />
-							{errors.address && 'Street address, city and zip code are required.'}
-						
-						<Occupancy   
-							className={classes.textField}
-    						// value={values.occupancy}
-    						ref={register({ required: true })}
-							onChange={handleChange('occupancy')} />
-							{errors.industry && 'field required'} 
-
-				</DialogContent>
-
-				<DialogActions>
-					<Button onClick={handleClose} color="primary"> Cancel </Button>
-					<Button type="submit" onClick={handleSubmit} color="primary"> Get Quote </Button>
-				</DialogActions>
-        	</Dialog>
-      </form>
-    );
+class FormDialog extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+      		industrySelection: '',
+			businessName: '',
+			address: '',
+			occupancySelection: ''
+		};
+		this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    	this.handleClearForm = this.handleClearForm.bind(this);
+    	this.handleIndustrySelect = this.handleIndustrySelect.bind(this);
+		this.handleBusinessNameChange = this.handleBusinessNameChange.bind(this);
+		this.handleAddressChange = this.handleAddressChange.bind(this);
+		this.handleOccupancySelect = this.handleOccupancySelect.bind(this);
+	}
+	componentDidMount() {
+    this.setState({
+      industrySelection: industryOptions,
+      businessName: '',
+      address: '',
+      occupancySelection: occupancySelection,
+    })
   }
+  
+  handleIndustrySelect(e) {
+		this.setState({ industrySelection: e.target.value }, () => console.log('industry', this.state.industrySelection));
+  }
+  
+	handleBusinessNameChange(e) {
+		this.setState({ businessName: e.target.value }, () => console.log('name:', this.state.businessName));
+  }
+  
+  handleAddressChange(e) {
+		this.setState({ address: e.target.value }, () => console.log('address:', this.state.address));
+	}
+
+	handleOccupancySelect(e) {
+		this.setState({ occupancySelection: e.target.value }, () => console.log('occupancy', this.state.occupancySelection));
+	}
+	
+	handleClearForm(e) {
+		e.preventDefault();
+		this.setState({
+      		industrySelection: '',
+			businessName: '',
+			address: '',
+			occupancySelection: ''
+		});
+	}
+	handleFormSubmit(e) {
+		e.preventDefault();
+
+		const formPayload = {
+      industrySelection: this.state.handleIndustrySelect,
+			businessName: this.state.businessName,
+			address: this.state.address,
+			occupancySelection: this.state.handleOccupancySelect
+		};
+
+		console.log('Send this in a POST request:', formPayload);
+		this.handleClearForm(e);
+	}
+	render() {
+		return (
+	
+			<form className="container" onSubmit={this.handleFormSubmit}>
+				<Dialog >
+					<AppBar>
+						<DialogTitle>Get a Quote for your Salon</DialogTitle>
+					</AppBar>
+					<DialogContent style={{ padding: '20px 30px' }} >
+						<DialogContentText>Let's get you a quote -- just a couple questions for you.</DialogContentText>
+						<Industry
+							name={'industry'}
+							placeholder={'Choose your Industry'}
+							controlFunc={this.handleIndustrySelect}
+							options={this.state.industryOptions}
+							selectedOption={this.state.industrySelection} />
+						<Business
+							inputType={'text'}
+							title={'Full name'}
+							name={'name'}
+							controlFunc={this.handleBusinessNameChange}
+							content={this.state.businessName}
+							placeholder={'Type first and last name here'} />
+						<Address
+							inputType={'text'}
+							title={'Full Address'}
+							name={'address'}
+							controlFunc={this.handleAddressChange}
+							content={this.state.address}
+							placeholder={'Type full address: street, city, state, & zip code.'} />
+						<Occupancy
+							name={'occupancy'}
+							placeholder={'Choose your Space'}
+							controlFunc={this.handleOccupancySelect}
+							options={this.state.occupancyOptions}
+							selectedOption={this.state.occupancySelection} />
+						<DialogActions>
+						<Button 
+							type="submit"
+							className="btn btn-primary float-right"
+							value="Submit">Submit</Button>
+						<Button
+							className="btn btn-link float-left"
+							onClick={this.handleClearForm}>Clear form</Button>
+						</DialogActions>
+					</DialogContent>
+				</Dialog>
+			</form>
+		);
+	}
+}
+
+export default FormDialog;
