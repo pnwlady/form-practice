@@ -1,17 +1,8 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
-// const industries = [
-//     {
-//         value: 'Beauty and Hair Styling Salon',
-//         label: 'Hair Salon',
-//       },
-//       {
-//         value: 'Nail Salons',
-//         label: 'Nail Salon',
-//       }
-// ];
 
 const Industry = (props) => (
 	<TextField
@@ -20,26 +11,23 @@ const Industry = (props) => (
 		name={props.name}
 		value={props.selectedOption}
 		onChange={props.controlFunc}
-		label={props.label}
 		placeholder={props.placeholder}
 		margin="normal"
 		>
 		{props.option.map(option => (
-			<MenuItem value={option.value}>
+			<MenuItem key={option.value}>
 				{option.label}
 			</MenuItem>
 		))}
 	</TextField>
 );
 
-
-
 Industry.propTypes = {
-	name: React.PropTypes.string.isRequired,
-	options: React.PropTypes.array.isRequired,
-	selectedOption: React.PropTypes.string,
-	controlFunc: React.PropTypes.func.isRequired,
-	placeholder: React.PropTypes.string
+	name: PropTypes.string.isRequired,
+	options: PropTypes.array.isRequired,
+	selectedOption: PropTypes.string,
+	controlFunc: PropTypes.func.isRequired,
+	placeholder: PropTypes.string
 };
 
 export default Industry;

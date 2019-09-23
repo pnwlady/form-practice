@@ -1,33 +1,7 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-
-// const occupancy = [
-//     {
-//         value: 'HMBUS',
-//         label: 'Salon at your Home',
-//       },
-//       {
-//         value: 'LSCND',
-//         label: 'Rent Chair, Office, or Space',
-//       },
-//       {
-//         value: 'OWNCND',
-//         label: 'Own Office or Space',
-//       },
-//       {
-//         value: 'LSBLD',
-//         label: 'Rent Building',
-//       },
-//       {
-//         value: 'OWBLD',
-//         label: 'Own Building',
-//       },
-//       {
-//         value: 'KSBUS',
-//         label: 'Kiosk',
-//       },
-// ];
 
 const Occupancy = (props) => (
 	<TextField
@@ -36,7 +10,6 @@ const Occupancy = (props) => (
 		name={props.name}
 		value={props.selectedOption}
 		onChange={props.controlFunc}
-		label={props.label}
 		placeholder={props.placeholder}
 		margin="normal"
 	>
@@ -49,11 +22,11 @@ const Occupancy = (props) => (
 );
 
 Occupancy.propTypes = {
-	name: React.PropTypes.string.isRequired,
-	options: React.PropTypes.array.isRequired,
-	selectedOption: React.PropTypes.string,
-	controlFunc: React.PropTypes.func.isRequired,
-	placeholder: React.PropTypes.string
+	name: PropTypes.string.isRequired,
+	options: PropTypes.array.isRequired,
+	selectedOption: PropTypes.string,
+	controlFunc: PropTypes.func.isRequired,
+	placeholder: PropTypes.string
 };
 
 export default Occupancy;

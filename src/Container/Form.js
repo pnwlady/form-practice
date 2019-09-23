@@ -12,42 +12,42 @@ import Business from '../components/Business';
 import Address from '../components/Address';
 import Occupancy from '../components/Occupancy';
 
-  const industryOptions = [
-    {
-        value: 'Beauty and Hair Styling Salon',
-        label: 'Hair Salon',
-      },
-      {
-        value: 'Nail Salons',
-        label: 'Nail Salon',
-      }
-  ];
-  const occupancySelection = [
-    {
-        value: 'HMBUS',
-        label: 'Salon at your Home',
-      },
-      {
-        value: 'LSCND',
-        label: 'Rent Chair, Office, or Space',
-      },
-      {
-        value: 'OWNCND',
-        label: 'Own Office or Space',
-      },
-      {
-        value: 'LSBLD',
-        label: 'Rent Building',
-      },
-      {
-        value: 'OWBLD',
-        label: 'Own Building',
-      },
-      {
-        value: 'KSBUS',
-        label: 'Kiosk',
-      },
-  ];
+//   const industryOptions = [
+//     {
+//         value: 'Beauty and Hair Styling Salon',
+//         name: 'Hair Salon',
+//       },
+//       {
+//         value: 'Nail Salons',
+//         name: 'Nail Salon',
+//       }
+//   ];
+//   const occupancySelection = [
+//     {
+//         value: 'HMBUS',
+//         name: 'Salon at your Home',
+//       },
+//       {
+//         value: 'LSCND',
+//         name: 'Rent Chair, Office, or Space',
+//       },
+//       {
+//         value: 'OWNCND',
+//         name: 'Own Office or Space',
+//       },
+//       {
+//         value: 'LSBLD',
+//         name: 'Rent Building',
+//       },
+//       {
+//         value: 'OWBLD',
+//         name: 'Own Building',
+//       },
+//       {
+//         value: 'KSBUS',
+//         name: 'Kiosk',
+//       },
+//   ];
 
 class FormDialog extends React.Component {
 	constructor(props) {
@@ -66,34 +66,37 @@ class FormDialog extends React.Component {
 		this.handleOccupancySelect = this.handleOccupancySelect.bind(this);
 	}
 	componentDidMount() {
-    this.setState({
-      industrySelection: industryOptions,
-      businessName: '',
-      address: '',
-      occupancySelection: occupancySelection,
-    })
+		fetch('./options.json')
+		.then(res => res.json())
+		.then(data => {
+			console.log("is this happening?", data);
+			this.setState({
+				industrySelection: data.industryOptions,
+				occupancySelection: data.occupancySelection,
+			  })
+		});
   }
   
-  handleIndustrySelect(e) {
+	handleIndustrySelect(e) {
 		this.setState({ industrySelection: e.target.value }, () => console.log('industry', this.state.industrySelection));
-  }
-  
+	}
+	
 	handleBusinessNameChange(e) {
 		this.setState({ businessName: e.target.value }, () => console.log('name:', this.state.businessName));
-  }
-  
-  handleAddressChange(e) {
+	}
+	
+	handleAddressChange(e) {
 		this.setState({ address: e.target.value }, () => console.log('address:', this.state.address));
 	}
 
 	handleOccupancySelect(e) {
 		this.setState({ occupancySelection: e.target.value }, () => console.log('occupancy', this.state.occupancySelection));
 	}
-	
+		
 	handleClearForm(e) {
 		e.preventDefault();
 		this.setState({
-      		industrySelection: '',
+			industrySelection: '',
 			businessName: '',
 			address: '',
 			occupancySelection: ''
@@ -103,7 +106,7 @@ class FormDialog extends React.Component {
 		e.preventDefault();
 
 		const formPayload = {
-      industrySelection: this.state.handleIndustrySelect,
+			industrySelection: this.state.handleIndustrySelect,
 			businessName: this.state.businessName,
 			address: this.state.address,
 			occupancySelection: this.state.handleOccupancySelect
@@ -112,9 +115,9 @@ class FormDialog extends React.Component {
 		console.log('Send this in a POST request:', formPayload);
 		this.handleClearForm(e);
 	}
+	
 	render() {
 		return (
-	
 			<form className="container" onSubmit={this.handleFormSubmit}>
 				<Dialog >
 					<AppBar>
@@ -131,7 +134,7 @@ class FormDialog extends React.Component {
 						<Business
 							inputType={'text'}
 							title={'Full name'}
-							name={'name'}
+							name={'businessName'}
 							controlFunc={this.handleBusinessNameChange}
 							content={this.state.businessName}
 							placeholder={'Type first and last name here'} />

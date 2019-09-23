@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
 const Business = props => (
@@ -14,14 +15,14 @@ const Business = props => (
 );
 
 Business.propTypes = {
-	inputType: React.PropTypes.oneOf(['text', 'number']).isRequired,
-	name: React.PropTypes.string.isRequired,
-	controlFunc: React.PropTypes.func.isRequired,
-	content: React.PropTypes.oneOfType([
-		React.PropTypes.string,
-		React.PropTypes.number,
+	inputType: PropTypes.oneOf(['text', 'number']).isRequired,
+	name: PropTypes.string.isRequired,
+	controlFunc: PropTypes.func.isRequired,
+	content: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
 	]).isRequired,
-	placeholder: React.PropTypes.string,
+	placeholder: PropTypes.string,
 };
 
 export default Business;
