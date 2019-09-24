@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
-// import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -31,33 +30,44 @@ const occupancies = [
       },
 ];
 
-const Occupancy = (props) => (
-	<Select
-		className="form-select"
-		value={occupancies.value}
-		name={occupancies.name}
-		// value={props.selectedOption}
-		onChange={props.controlFunc}
-		helperText={props.placeholder}
-		margin="normal"
-		inputProps={{
-            name: 'name',
-            id: 'occupancy-select',
-          }}
-		>
-		{occupancies.map(option => (
-          <MenuItem value={option.value}>
-            {option.name}
-          </MenuItem>
-        ))}
-	</Select>
-);
+const Occupancy = (props) => {
+	const [values, setValues] = useState({
+		name: 'Hair Salon',
+		value: 'Beauty and Hair Styling Salon',
+	  });
 
+	const changeOccupancy = event => {
+		setValues(oldValues => ({
+		  ...oldValues,
+		  [event.target.name]: event.target.value,
+		}));
+	  };
+	  
+  return (
+    <Select
+        className="form-select"
+		value={values.value}
+		name={values.name}
+        onChange={changeOccupancy}
+        helperText={props.placeholder}
+        margin="normal"
+        inputProps={{
+          name: 'name',
+          id: 'occupancy-select',
+        }}
+        >
+        {occupancies.map(option => (
+			<MenuItem value={option.value}>
+                {option.name}
+			</MenuItem>
+		))}
+      </Select>
+  )
+}
+	
 Occupancy.propTypes = {
-	name: PropTypes.string.isRequired,
-	// options: PropTypes.array.isRequired,
-	// selectedOption: PropTypes.string,
-	controlFunc: PropTypes.func.isRequired,
+  	name: PropTypes.string.isRequired,
+  	value: PropTypes.string.isRequired,
 	placeholder: PropTypes.string
 };
 

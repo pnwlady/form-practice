@@ -19,30 +19,24 @@ import { useTheme } from '@material-ui/core/styles';
 const FormContainer = () => {
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-		const formData = {
-			industry: '',
-			businessName: '',
-			address: '',
-			occupancy: ''
-		};
+		// const formData = {
+		// 	industry: '',
+		// 	businessName: '',
+		// 	address: '',
+		// 	occupancy: ''
+		// };
 		// // this.handleFormSubmit = this.handleFormSubmit.bind(this);
 		// const [form, submitForm] = useState('');
 		// // this.handleClearForm = this.handleClearForm.bind(this);
 		// const [clear, clearForm] = useState('');
 		// this.handleIndustrySelect = this.handleIndustrySelect.bind(this);
-		const [industry, changeIndustry] = useState({
-			name: 'Hair Salon',
-			value: 'Beauty and Hair Styling Salon'
-		});
+		const [industry, changeIndustry] = useState('');
 		// this.handleBusinessNameChange = this.handleBusinessNameChange.bind(this);
 		const [businessName, changeBusinessName] = useState('');
 		// this.handleAddressChange = this.handleAddressChange.bind(this);
 		const [address, changeAddress] = useState('');
 		// this.handleOccupancySelect = this.handleOccupancySelect.bind(this);
-		const [occupancy, changeOccupancy] = useState({
-			name: 'Rent Chair, Office, or Space',
-			value: 'LSCND'
-		});
+		const [occupancy, changeOccupancy] = useState('');
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
@@ -90,7 +84,7 @@ const FormContainer = () => {
 					<Industry
 						// name={'industry'}
 						placeholder={'Choose your Industry'}
-						controlFunc={handleIndustrySelect}
+						// controlFunc={handleIndustrySelect}
 						// options={industryOptions}
 						// selectedOption={industrySelection} 
 						/>
@@ -111,7 +105,7 @@ const FormContainer = () => {
 					<Occupancy
 						name={'occupancy'}
 						placeholder={'Choose your Space'}
-						controlFunc={handleOccupancySelect}
+						// controlFunc={handleOccupancySelect}
 						// options={occupancyOptions}
 						// selectedOption={occupancySelection} 
 						/>
