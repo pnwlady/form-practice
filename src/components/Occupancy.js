@@ -34,8 +34,8 @@ const occupancies = [
 const Occupancy = (props) => (
 	<Select
 		className="form-select"
-		value={props.occupancy.value}
-		name={props.occupancy.name}
+		value={occupancies.value}
+		name={occupancies.name}
 		// value={props.selectedOption}
 		onChange={props.controlFunc}
 		helperText={props.placeholder}
@@ -51,11 +51,6 @@ const Occupancy = (props) => (
           </MenuItem>
         ))}
 	</Select>
-		{/* <MenuItem value="HMBUS">Salon at your Home</MenuItem>
-		<MenuItem value="LSCND" selected={true} >Rent Chair, Office, or Space</MenuItem>
-		<MenuItem value="OWNCND">Own Office or Space</MenuItem>
-		<MenuItem value="LSBLD">Rent Building</MenuItem>
-		<MenuItem value="OWBLD">Own Building</MenuItem> */}
 );
 
 Occupancy.propTypes = {

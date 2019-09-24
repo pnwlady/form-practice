@@ -16,8 +16,8 @@ const industries = [
 const Industry = (props) => (
 	<Select
 		className="form-select"
-		value={props.industry.value}
-		name={props.industry.name}
+		value={industries.value}
+		name={industries.name}
 		// value={props.selectedOption}
 		onChange={props.controlFunc}
 		helperText={props.placeholder}

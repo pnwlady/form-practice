@@ -14,10 +14,11 @@ import Occupancy from '../components/Occupancy';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 //hooks can only be used in body of react functional component
-const theme = useTheme();
-const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
 
 const FormContainer = () => {
+	const theme = useTheme();
+	const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 		const formData = {
 			industry: '',
 			businessName: '',
@@ -87,7 +88,7 @@ const FormContainer = () => {
 				</AppBar>
 					<DialogContentText>Let's get you a quote -- just a couple questions for you.</DialogContentText>
 					<Industry
-						name={'industry'}
+						// name={'industry'}
 						placeholder={'Choose your Industry'}
 						controlFunc={handleIndustrySelect}
 						// options={industryOptions}
@@ -117,7 +118,7 @@ const FormContainer = () => {
 					<DialogActions>
 					<Button
 						className="btn btn-link float-left"
-						onClick={this.handleClearForm}>Clear form</Button>
+						onClick={handleClearForm}>Clear form</Button>
 					<Button 
 						type="submit"
 						className="btn btn-primary float-right"
