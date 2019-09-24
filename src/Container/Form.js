@@ -1,5 +1,5 @@
 // import React, { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,115 +14,119 @@ import Occupancy from '../components/Occupancy';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 //hooks can only be used in body of react functional component
-// const theme = useTheme();
-// const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+const theme = useTheme();
+const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-class FormContainer extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-      		industrySelection: '',
+const FormContainer = () => {
+		const formData = {
+			industry: '',
 			businessName: '',
 			address: '',
-			occupancySelection: ''
+			occupancy: ''
 		};
-		this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    	this.handleClearForm = this.handleClearForm.bind(this);
-    	this.handleIndustrySelect = this.handleIndustrySelect.bind(this);
-		this.handleBusinessNameChange = this.handleBusinessNameChange.bind(this);
-		this.handleAddressChange = this.handleAddressChange.bind(this);
-		this.handleOccupancySelect = this.handleOccupancySelect.bind(this);
-	}
-
-	handleIndustrySelect(e) {
-		this.setState({ industrySelection: e.target.value }, () => console.log('industry', this.state.industrySelection));
-	}
-	
-	handleBusinessNameChange(e) {
-		this.setState({ businessName: e.target.value }, () => console.log('name:', this.state.businessName));
-	}
-	
-	handleAddressChange(e) {
-		this.setState({ address: e.target.value }, () => console.log('address:', this.state.address));
-	}
-
-	handleOccupancySelect(e) {
-		this.setState({ occupancySelection: e.target.value }, () => console.log('occupancy', this.state.occupancySelection));
-	}
-		
-	handleClearForm(e) {
-		e.preventDefault();
-		this.setState({
-			industrySelection: '',
-			businessName: '',
-			address: '',
-			occupancySelection: ''
+		// // this.handleFormSubmit = this.handleFormSubmit.bind(this);
+		// const [form, submitForm] = useState('');
+		// // this.handleClearForm = this.handleClearForm.bind(this);
+		// const [clear, clearForm] = useState('');
+		// this.handleIndustrySelect = this.handleIndustrySelect.bind(this);
+		const [industry, changeIndustry] = useState({
+			name: 'Hair Salon',
+			value: 'Beauty and Hair Styling Salon'
 		});
-	}
-	handleFormSubmit(e) {
+		// this.handleBusinessNameChange = this.handleBusinessNameChange.bind(this);
+		const [businessName, changeBusinessName] = useState('');
+		// this.handleAddressChange = this.handleAddressChange.bind(this);
+		const [address, changeAddress] = useState('');
+		// this.handleOccupancySelect = this.handleOccupancySelect.bind(this);
+		const [occupancy, changeOccupancy] = useState({
+			name: 'Rent Chair, Office, or Space',
+			value: 'LSCND'
+		});
+
+	const handleFormSubmit = (e) => {
 		e.preventDefault();
 
 		const formPayload = {
-			industrySelection: this.state.handleIndustrySelect,
-			businessName: this.state.businessName,
-			address: this.state.address,
-			occupancySelection: this.state.handleOccupancySelect
+			industry: industry,
+			businessName: businessName,
+			address: address,
+			occupancy: occupancy
 		};
 
 		console.log('Send this in a POST request:', formPayload);
-		this.handleClearForm(e);
+		handleClearForm(e);
 	}
 
-	render() {
-		return (
-			<form onSubmit={this.handleFormSubmit}>
-				{/* <Dialog open="true" aria-labelledby="form-dialog-title" fullScreen={fullScreen} ></Dialog> */}
-				<Dialog open="true" aria-labelledby="form-dialog-title" >
-					<DialogContent style={{ padding: '20px 30px' }} >
-					<AppBar className="appBar">
-						<DialogTitle>Get a Quote for your Salon</DialogTitle>
-					</AppBar>
-						<DialogContentText>Let's get you a quote -- just a couple questions for you.</DialogContentText>
-						<Industry
-							name={'industry'}
-							placeholder={'Choose your Industry'}
-							controlFunc={this.handleIndustrySelect}
-							options={this.state.industryOptions}
-							selectedOption={this.state.industrySelection} />
-						<Business
-							inputType={'text'}
-							title={'Full name'}
-							name={'businessName'}
-							controlFunc={this.handleBusinessNameChange}
-							content={this.state.businessName}
-							placeholder={'Type first and last name here'} />
-						<Address
-							inputType={'text'}
-							title={'Full Address'}
-							name={'address'}
-							controlFunc={this.handleAddressChange}
-							content={this.state.address}
-							placeholder={'Type full address: street, city, state, & zip code.'} />
-						<Occupancy
-							name={'occupancy'}
-							placeholder={'Choose your Space'}
-							controlFunc={this.handleOccupancySelect}
-							options={this.state.occupancyOptions}
-							selectedOption={this.state.occupancySelection} />
-						<DialogActions>
-						<Button
-							className="btn btn-link float-left"
-							onClick={this.handleClearForm}>Clear form</Button>
-						<Button 
-							type="submit"
-							className="btn btn-primary float-right"
-							value="Submit">Submit</Button>
-						</DialogActions>
-					</DialogContent>
-				</Dialog>
-			</form>
-		);
-	}
+	const handleClearForm = (e) => {
+		e.preventDefault();
+		changeIndustry('');
+		changeBusinessName('');
+		changeAddress('');
+		changeOccupancy('');
+	};
+
+	const handleIndustrySelect = (e) => {
+		changeIndustry(e.target.value);
+	};
+	const handleBusinessNameChange = (e) => {
+		changeBusinessName(e.target.value);
+	};
+	const handleAddressChange = (e) => {
+		changeAddress(e.target.value);
+	};
+	const handleOccupancySelect = (e) => {
+		changeOccupancy(e.target.value);
+	};
+
+	return (
+		<form onSubmit={handleFormSubmit}>
+			<Dialog open="true" aria-labelledby="form-dialog-title" fullScreen={fullScreen} >
+				<DialogContent style={{ padding: '20px 30px' }} >
+				<AppBar className="appBar">
+					<DialogTitle>Get a Quote for your Salon</DialogTitle>
+				</AppBar>
+					<DialogContentText>Let's get you a quote -- just a couple questions for you.</DialogContentText>
+					<Industry
+						name={'industry'}
+						placeholder={'Choose your Industry'}
+						controlFunc={handleIndustrySelect}
+						// options={industryOptions}
+						// selectedOption={industrySelection} 
+						/>
+					<Business
+						inputType={'text'}
+						title={'Full name'}
+						name={'businessName'}
+						controlFunc={handleBusinessNameChange}
+						content={businessName}
+						placeholder={'Type first and last name here'} />
+					<Address
+						inputType={'text'}
+						title={'Full Address'}
+						name={'address'}
+						controlFunc={handleAddressChange}
+						content={address}
+						placeholder={'Type full address: street, city, state, & zip code.'} />
+					<Occupancy
+						name={'occupancy'}
+						placeholder={'Choose your Space'}
+						controlFunc={handleOccupancySelect}
+						// options={occupancyOptions}
+						// selectedOption={occupancySelection} 
+						/>
+					<DialogActions>
+					<Button
+						className="btn btn-link float-left"
+						onClick={this.handleClearForm}>Clear form</Button>
+					<Button 
+						type="submit"
+						className="btn btn-primary float-right"
+						value="Submit">Submit</Button>
+					</DialogActions>
+				</DialogContent>
+			</Dialog>
+		</form>
+	);
 }
 
 export default FormContainer;

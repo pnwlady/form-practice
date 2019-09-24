@@ -1,27 +1,44 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
+const industries = [
+    {
+        value: 'Beauty and Hair Styling Salon',
+        name: 'Hair Salon',
+      },
+      {
+        value: 'Nail Salons',
+        name: 'Nail Salon',
+      }
+];
 const Industry = (props) => (
-	<TextField
+	<Select
 		className="form-select"
-		select
-		name={props.name}
-		value={props.selectedOption}
+		value={props.industry.value}
+		name={props.industry.name}
+		// value={props.selectedOption}
 		onChange={props.controlFunc}
 		helperText={props.placeholder}
 		margin="normal"
+		inputProps={{
+            name: 'name',
+            id: 'industry-select',
+          }}
 		>
-		<MenuItem value="Beauty and Hair Styling Salon" selected={true} >Hair Salon</MenuItem>
-		<MenuItem value="Nail Salons">Nail Salon</MenuItem>
-	</TextField>
+		{industries.map(option => (
+          <MenuItem value={option.value}>
+            {option.name}
+          </MenuItem>
+        ))}
+	</Select>
 );
 
 Industry.propTypes = {
 	name: PropTypes.string.isRequired,
-	options: PropTypes.array.isRequired,
-	selectedOption: PropTypes.string,
+	// options: PropTypes.array.isRequired,
+	// selectedOption: PropTypes.string,
 	controlFunc: PropTypes.func.isRequired,
 	placeholder: PropTypes.string
 };
