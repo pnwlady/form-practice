@@ -32,8 +32,8 @@ const occupancies = [
 
 const Occupancy = (props) => {
 	const [values, setValues] = useState({
-		name: 'Hair Salon',
-		value: 'Beauty and Hair Styling Salon',
+		name: 'LSCND',
+		value: 'Rent Chair, Office, or Space',
 	  });
 
 	const changeOccupancy = event => {
@@ -42,7 +42,7 @@ const Occupancy = (props) => {
 		  [event.target.name]: event.target.value,
 		}));
 	  };
-	  
+
   return (
     <Select
         className="form-select"
